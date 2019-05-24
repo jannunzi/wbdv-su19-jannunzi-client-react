@@ -6,7 +6,9 @@ const CourseListComponent = ({courses}) =>
         <div className="list-group">
             {
                 courses.map(course =>
-                    <a href={`/courses/${course.id}/modules/1/lessons/1/topics/1`} key={course.id} className="list-group-item">
+                    <a href={`/courses/${course.id}/modules/1/lessons/1/topics/1`}
+                       key={course.id}
+                       className="list-group-item">
                         {course.title}
                     </a>
                 )

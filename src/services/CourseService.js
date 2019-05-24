@@ -21,7 +21,9 @@ class CourseService {
     findCourseById = courseId => {
         return courses.find(course => course.id == courseId)
     }
-    updateCourse = (courseId, course) => {}
+    updateCourse = (courseId, newCourse) => {
+        courses = courses.map(course => course.id == courseId ? newCourse : course)
+    }
     deleteCourse = courseId => {
         courses = courses.filter(course => course.id !== courseId)
     }
