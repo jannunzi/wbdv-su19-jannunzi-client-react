@@ -9,9 +9,15 @@ export default class ModuleListContainer extends React.Component {
             modules : this.props.modules
         }
     }
+    deleteModule = moduleId =>
+        this.setState({
+            modules: this.state.modules.filter(module => module.id !== moduleId)
+        })
+
     render() {
         return(
             <ModuleListComponent
+                deleteModule={this.deleteModule}
                 params={this.props.params}
                 course={this.state.course}
                 modules={this.state.modules}/>

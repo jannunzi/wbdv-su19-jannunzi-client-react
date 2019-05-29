@@ -17,6 +17,10 @@ const CourseEditorComponent = ({course, modules, lessons, params}) =>
                 params={params}
                 course={course}
                 lessons={lessons}/>
+
+            {/*<TopicPillsContainer*/}
+                {/*params={params}*/}
+                {/*topics={topics}/>*/}
         </div>
     </div>
 </div>

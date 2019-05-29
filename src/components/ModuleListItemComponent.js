@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ModuleListItemComponent = ({state, updateState, module, params, input}) =>
+const ModuleListItemComponent = ({state, updateState, deleteModule, module, params, input}) =>
 <li className={`list-group-item ${module.id == params.moduleId? 'active' : ''}`}>
     {!state.editing &&
         <span>
@@ -9,6 +9,7 @@ const ModuleListItemComponent = ({state, updateState, module, params, input}) =>
                 {module.title}
             </a>
             <i onClick={() => {updateState({editing: true})}} className="fa fa-pencil float-right"></i>
+            <i onClick={() => {deleteModule(module.id)}} className="fa fa-remove float-right"></i>
         </span>
     }
     {state.editing &&

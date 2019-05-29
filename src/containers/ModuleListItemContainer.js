@@ -10,6 +10,7 @@ export default class ModuleListItemContainer
             editing: false
         }
     }
+
     updateState = newState =>
     {
         if(newState.moduleTitle) {
@@ -22,6 +23,7 @@ export default class ModuleListItemContainer
         return (
         <ModuleListItemComponent
             state={this.state}
+            deleteModule={this.props.deleteModule}
             updateState={this.updateState}
             module={this.state.module}
             editing={this.state.editing}
