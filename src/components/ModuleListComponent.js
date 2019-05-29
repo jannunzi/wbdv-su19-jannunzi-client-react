@@ -1,18 +1,17 @@
 import React from 'react'
-
-const ModuleListComponent = ({course, modules}) =>
+import ModuleListItemContainer from '../containers/ModuleListItemContainer'
+const ModuleListComponent = ({course, modules, params}) =>
 <div>
-    <div className="list-group">
+    <ul className="list-group">
         {
             modules.map(module =>
-                <a key={module.id}
-                   href={`/courses/${course.id}/modules/${module.id}/lessons/1/topics/1`}
-                   className="list-group-item">
-                    {module.title}
-                </a>
+                <ModuleListItemContainer
+                    key={module.id}
+                    module={module}
+                    params={params}/>
             )
         }
-    </div>
+    </ul>
 </div>
 
 export default ModuleListComponent

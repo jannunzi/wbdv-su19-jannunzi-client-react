@@ -12,6 +12,7 @@ export default class ModuleListContainer extends React.Component {
     render() {
         return(
             <ModuleListComponent
+                params={this.props.params}
                 course={this.state.course}
                 modules={this.state.modules}/>
         )
