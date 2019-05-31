@@ -1,9 +1,11 @@
 import React from 'react'
 import ModuleListComponent from '../components/ModuleListComponent'
+import ModuleService from '../services/ModuleService'
 
 export default class ModuleListContainer extends React.Component {
     constructor(props) {
         super(props)
+        this.moduleService = ModuleService.getInstance()
         this.state = {
             course: this.props.course,
             modules : this.props.modules
@@ -11,7 +13,7 @@ export default class ModuleListContainer extends React.Component {
     }
     deleteModule = moduleId =>
         this.setState({
-            modules: this.state.modules.filter(module => module.id !== moduleId)
+            modules: this.moduleService.deleteModule(moduleId) //this.state.modules.filter(module => module.id !== moduleId)
         })
 
     render() {

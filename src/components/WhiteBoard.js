@@ -5,6 +5,7 @@ import CourseListContainer from '../containers/CourseListContainer'
 // npm install react-router-dom --save
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import CourseEditorContainer from '../containers/CourseEditorContainer'
+import WidgetListAssignment from '../containers/WidgetListAssignment'
 
 class WhiteBoard extends React.Component {
     render() {
@@ -13,7 +14,14 @@ class WhiteBoard extends React.Component {
                 <div>
                     <h1>WhiteBoard</h1>
 
-                    <a href="/courses">Courses</a>
+                    <a href="/courses">Courses</a> |
+                    <a href="/widgets">Widgets</a>
+
+
+                    <Route
+                        exact={true}
+                        path="/widgets"
+                        component={WidgetListAssignment}/>
 
                     <Route
                         exact={true}
