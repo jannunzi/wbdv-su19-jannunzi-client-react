@@ -2,26 +2,33 @@ import widgets from '../data/widgets'
 
 // reducer => state => store => provider => container => map to props => components
 
-const widgetReducer = (state={widgets: widgets}, action) => {
-    if(action.type === 'DELETE_WIDGET') {
-        return {
-            widgets: state.widgets.filter(widget => widget.id != action.widgetId)
-        }
-    } else if(action.type === 'CREATE_WIDGET') {
-        return {
-            widgets: [
-                ...state.widgets,
-                {
-                    id: (new Date()).getTime(),
-                    name: 'New Widget',
-                    type: 'HEADING'
-                }
-            ]
-        }
-    } else if(action.type === 'UPDATE_WIDGET') {
-        return {
-            widgets: state.widgets.map(widget => widget.id == action.widget.id ? action.widget : widget)
-        }
+const widgetReducer = (state={widgets: []}, action) => {
+    switch (action.type) {
+        case 'DELETE_WIDGET':
+        case "FIND_ALL_WIDGETS":
+            return {
+                widgets: action.widgets
+            }
+            break;
+        case 'CREATE_WIDGET':
+            return {
+                widgets: [
+                    ...state.widgets,
+                    {
+                        id: (new Date()).getTime(),
+                        name: 'New Widget',
+                        type: 'HEADING'
+                    }
+                ]
+            }
+            break;
+        case 'UPDATE_WIDGET':
+            return {
+                widgets: state.widgets.map(widget => widget.id == action.widget.id ? action.widget : widget)
+            }
+            break;
+        default:
+            return state;
     }
     return state;
 }

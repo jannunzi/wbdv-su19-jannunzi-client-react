@@ -5,15 +5,21 @@ import LinkWidget from "./widgets/LinkWidget";
 import ListWidget from "./widgets/ListWidget";
 import ImageWidget from "./widgets/ImageWidget";
 
-const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget}) =>//extends React.Component{
+class WidgetListComponent extends React.Component {//({widgets, deleteWidget, createWidget, updateWidget}) =>//extends React.Component{
+    constructor(props) {
+        super(props)
+        this.props.loadWidgets();
+    }
+    render() {
+        return(
     <ul>
         {
-            widgets.map(widget =>
+            this.props.widgets && this.props.widgets.map(widget =>
                 <li key={widget.id}>
                     {widget.name}
                     {widget.type}
                     <select
-                        onChange={(event) => updateWidget({...widget, type: event.target.value})}
+                        onChange={(event) => this.props.updateWidget({...widget, type: event.target.value})}
                         value={widget.type}>
                         <option value="HEADING">Heading</option>
                         <option value="PARAGRAPH">Paragraph</option>
@@ -22,36 +28,40 @@ const WidgetListComponent = ({widgets, deleteWidget, createWidget, updateWidget}
                         <option value="LINK">Link</option>
                     </select>
                     <button
-                        onClick={() => deleteWidget(widget.id)}>
+                        onClick={() => this.props.deleteWidget(widget.id)}>
                         Delete
                     </button>
                     {
                         widget.type === 'HEADING' &&
-                        <HeadingWidget widget={widget} updateWidget={updateWidget}/>
+                        <HeadingWidget widget={widget} updateWidget={this.props.updateWidget}/>
                     }
                     {
                         widget.type === 'PARAGRAPH' &&
-                        <ParagraphWidget widget={widget} updateWidget={updateWidget}/>
+                        <ParagraphWidget widget={widget} updateWidget={this.props.updateWidget}/>
                     }
                     {
                         widget.type === 'LINK' &&
-                        <LinkWidget widget={widget} updateWidget={updateWidget}/>
+                        <LinkWidget widget={widget} updateWidget={this.props.updateWidget}/>
                     }
                     {
                         widget.type === 'LIST' &&
-                        <ListWidget widget={widget} updateWidget={updateWidget}/>
+                        <ListWidget widget={widget} updateWidget={this.props.updateWidget}/>
                     }
                     {
                         widget.type === 'IMAGE' &&
-                        <ImageWidget widget={widget} updateWidget={updateWidget}/>
+                        <ImageWidget widget={widget} updateWidget={this.props.updateWidget}/>
                     }
                 </li>
             )
         }
         <li>
-            <button onClick={createWidget}>
+            <button onClick={this.props.createWidget}>
                 Add
             </button>
         </li>
     </ul>
+        )
+    }
+}
+
 export default WidgetListComponent
