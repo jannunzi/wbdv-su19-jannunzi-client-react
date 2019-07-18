@@ -6,6 +6,7 @@ import CourseListContainer from '../containers/CourseListContainer'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import CourseEditorContainer from '../containers/CourseEditorContainer'
 import WidgetListAssignment from '../containers/WidgetListAssignment'
+import Prototype from "./omdb/Prototype";
 
 class WhiteBoard extends React.Component {
     render() {
@@ -15,8 +16,13 @@ class WhiteBoard extends React.Component {
                     <h1>WhiteBoard</h1>
 
                     <a href="/courses">Courses</a> |
-                    <a href="/widgets">Widgets</a>
+                    <a href="/widgets">Widgets</a> |
+                    <a href="/prototype">Prototype</a>
 
+                    <Route
+                        exact={true}
+                        path="/prototype"
+                        component={Prototype}/>
 
                     <Route
                         exact={true}
